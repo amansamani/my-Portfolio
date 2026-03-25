@@ -1,5 +1,5 @@
 import { useRef } from "react";
-
+import { Analytics } from '@vercel/analytics/react';
 const SKILLS = {
   frontend: ["React.js", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
   backend: ["Node.js", "Express.js", "REST APIs", "JWT"],
@@ -158,5 +158,6 @@ export default function MobileLayout() {
         </div>
       </div>
     </div>
+    
   );
 }

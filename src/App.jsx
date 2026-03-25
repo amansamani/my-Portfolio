@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Card from "./components/Card";
 import Skills from "./components/Skills";
 import MobileLayout from "./components/MobileLayout";
+import { Analytics } from '@vercel/analytics/react';
 const SKILLS = {
   frontend: [
     "React.js",
@@ -80,6 +81,7 @@ export default function App() {
               "skills  proj2  contact    resume"
             `
           }}
+        
       >
 
         {/* ── INTRO ───────────────────────── */}
@@ -309,6 +311,7 @@ export default function App() {
       </div>
     </div>
     </div>
+    <Analytics />
     </>
   );
 }
@@ -378,4 +381,5 @@ function InstagramIcon() {
       <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3zm5 3.5A5.5 5.5 0 106 13a5.5 5.5 0 006-5.5zm0 2A3.5 3.5 0 118.5 13 3.5 3.5 0 0112 9.5zm4.75-3.25a1.25 1.25 0 11-1.25 1.25 1.25 1.25 0 011.25-1.25z" />
     </svg>
   );
+  
 }
