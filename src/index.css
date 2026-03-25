@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FCF0D6;
+  --color-accent:  #B40023;
+  --color-card:    #F7E9CC;
+  --color-ink:     #1a0a0a;
+
+  --font-sans:    "DM Sans", sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-mono:    "DM Mono", monospace;
+
+  --radius-2xl: 22px;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body { font-family: var(--font-sans); }
+}
+
+@layer utilities {
+  .display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.75;
+  }
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  /* 🔥 Hide scrollbar but keep scroll working */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+}
+/* Premium thin scrollbar */
+.premium-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.premium-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.premium-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(180, 0, 35, 0.4),
+    rgba(180, 0, 35, 0.8)
+  );
+  border-radius: 10px;
+}
+
+/* Hover effect */
+.premium-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 0, 35, 1);
+}
+
+/* Firefox */
+.premium-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 0, 35, 0.6) transparent;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.3s ease-out forwards;
+}
