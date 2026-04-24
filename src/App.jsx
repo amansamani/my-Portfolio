@@ -259,7 +259,7 @@ export default function App() {
           delay={0.50}
           style={{ gridArea: "proj2" }}
           className="flex flex-col overflow-hidden cursor-pointer group"
-          onClick={() => window.open("http://amansamani.me/Gallery-Toons/", "_blank")}
+          onClick={() => window.open("https://gallery-toons.vercel.app/", "_blank")}
         >
         <div className="flex-1 overflow-y-auto no-scrollbar pr-1 premium-scroll">
         <p className="label">Minor Project 2</p>
