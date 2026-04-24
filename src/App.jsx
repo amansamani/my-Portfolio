@@ -204,7 +204,7 @@ export default function App() {
           delay={0.32}
           style={{ gridArea: "proj1" }}
           className="flex flex-col overflow-hidden cursor-pointer group"
-          onClick={() => window.open("http://amansamani.me/blackjack-game/", "_blank")}
+          onClick={() => window.open("https://blackjack-game-nvp7.vercel.app/", "_blank")}
         >
         <div className="flex-1 overflow-y-auto pr-1 premium-scroll">
         <p className="label">Minor Project 1</p>
