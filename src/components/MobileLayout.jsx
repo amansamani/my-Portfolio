@@ -1,163 +1,196 @@
 import { useRef } from "react";
-import { Analytics } from '@vercel/analytics/react';
-const SKILLS = {
-  frontend: ["React.js", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
-  backend: ["Node.js", "Express.js", "REST APIs", "JWT"],
-  database: ["MongoDB", "PostgreSQL"],
-  mobile: ["React Native"],
-  ai_ml: ["Python", "Pandas", "Scikit-learn"],
-};
+import Card from "./Card";
+import Skills from "./Skills";
+import { SKILLS, FEATURED_PROJECT, PROJECTS, SOCIALS, CONTACT } from "../data";
 
-const PROJECTS = [
-  { title: "FitLip - AI Health Assistant", image: "/fitlip.png" },
-  { title: "Wallpaper App", image: "/wallpaper.png" },
-  { title: "Blackjack Game", image: "/betjack.png" },
-];
-
+/**
+ * Mobile bento — same design language as desktop (no separate pastel theme),
+ * fitted to a single viewport (100dvh, no page scroll). Dense sections get
+ * their own internal scroll/carousel instead of scrolling the whole page.
+ */
 export default function MobileLayout() {
   const videoRef = useRef(null);
 
   return (
-    <div className="min-h-screen w-full bg-[#f0ebe2] animate-fadeIn">
-
-      <div className="w-full min-h-screen flex flex-col">
-
-        {/* GRID */}
-        <div className="grid grid-cols-2 gap-2 px-2 pt-3 pb-6 flex-1 content-start">
-
-          {/* INTRO */}
-          <div className="bg-[#FCF0D6] rounded-xl border border-black/10 p-3 text-center">
-            <p className="text-[20px] font-bold uppercase text-[#B40023] mb-2">
-              Introduction
-            </p>
-
-            <div className="w-[100px] h-[100px] mx-auto rounded-full border border-[#B40023]/30 p-[3px]">
-              <video
-                ref={videoRef}
-                src="/aman_video1.mp4"
-                autoPlay
-                loop
-                muted
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-
-            <p className="text-[12px] font-bold mt-2">Aman Samani</p>
-
-            <p className="text-[10px] text-black/60 mt-2 leading-relaxed">
-              Full Stack Developer specializing in <span className="text-accent">MERN&#8209;Stack</span> and AI-driven applications, building scalable products from idea to deployment.
-            </p>
-
-            <button className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/10 shadow-sm hover:shadow-md transition-all active:scale-95 group">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span className="text-[9px] font-bold uppercase tracking-wider text-black/70 group-hover:text-black">
-                Available for work
-              </span>
-            </button>
-          </div>
-
-          {/* SKILLS */}
-          <div className="bg-[#FCF0D6] rounded-xl border border-black/10 p-3 flex flex-col">
-            <p className="text-[20px] font-bold uppercase text-[#b40023] mb-2">
-              Skills
-            </p>
-
-            <div className="flex flex-col gap-2 overflow-y-auto max-h-[240px] no-scrollbar">
-              {Object.entries(SKILLS).map(([category, items]) => (
-                <div key={category}>
-                  <p className="text-[8px] uppercase text-black/50 mb-1">
-                    {category.replace("_", " ")}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1">
-                    {items.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-[8px] px-2 py-[2px] rounded-full bg-white border"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+    <div className="h-dvh w-dvw bg-primary overflow-hidden p-2.5 pb-[max(10px,env(safe-area-inset-bottom))]">
+      <div
+        className="relative z-10 h-full grid gap-2"
+        style={{
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "auto 1fr 1.3fr auto",
+        }}
+      >
+        {/* ── INTRO ───────────────────────── */}
+        <Card delay={0.03} className="!col-span-2 !p-3.5" bodyClassName="!flex-row items-center gap-3.5">
+          <div className="relative flex-shrink-0">
+            <div className="absolute inset-[-4px] rounded-full bg-[conic-gradient(rgba(180,0,35,0.25)_0deg,transparent_120deg,transparent_360deg)] blur-[4px] opacity-70" />
+            <div className="w-[58px] h-[58px] rounded-full border border-accent/30 p-[2px] relative z-10">
+              <div className="w-full h-full rounded-full overflow-hidden bg-accent/10">
+                <video
+                  ref={videoRef}
+                  src="/aman_video1.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Short introduction clip of Aman Samani"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
             </div>
           </div>
 
-          {/* PROJECTS */}
-          <div className="col-span-2 bg-[#FCF0D6] rounded-xl border border-black/10 p-3 flex flex-col">
-            <p className="text-[20px] font-bold uppercase text-[#b40023] mb-2">
-              Projects
-            </p>
-
-            <div className="flex overflow-x-auto gap-3 snap-x snap-mandatory no-scrollbar">
-              {PROJECTS.map((p, i) => (
-                <div
-                  key={i}
-                  className="min-w-full aspect-[16/9] snap-center relative rounded-xl overflow-hidden"
-                >
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-full object-cover"
-                  />
-
-                  <div className="absolute inset-0 bg-black/60" />
-
-                  <div className="absolute inset-0 flex items-center justify-center text-white text-center">
-                    <p className="text-[12px] font-semibold">
-                      {p.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          <div className="min-w-0 flex-1">
+            <p className="text-[13px] font-semibold text-ink leading-tight truncate">Aman Samani</p>
+            <p className="text-[10px] text-ink/60 font-medium leading-tight">Full Stack & AI Developer</p>
+            <div className="flex items-center gap-1.5 text-[9px] text-ink/70 font-medium mt-1">
+              <span className="w-[6px] h-[6px] rounded-full bg-accent animate-pulse flex-shrink-0" />
+              Available for roles
             </div>
           </div>
+        </Card>
 
-          {/* SOCIAL */}
-          <div className="col-span-2 bg-gradient-to-br from-[#FCF0D6] to-[#F7E9CC] rounded-xl border border-black/10 p-4 flex flex-col items-center">
+        {/* ── SKILLS ──────────────────────── */}
+        <Card delay={0.08} className="!p-3 flex flex-col overflow-hidden">
+          <p className="label text-accent/85 !text-[9px]">Skills</p>
+          <div className="flex-1 min-h-0 overflow-y-auto premium-scroll mt-1 pr-0.5">
+            <MobileSkills skills={SKILLS} />
+          </div>
+        </Card>
 
-            <p className="text-[20px] font-bold text-[#B40023] tracking-widest mb-3">
-              CONNECT
-            </p>
-
-            <div className="flex gap-10 mb-2">
-
-              <a href="https://github.com/amansamani" target="_blank" className="w-7 h-7 rounded-full overflow-hidden">
-                <img src="/github.svg" className="w-full h-full object-cover" />
+        {/* ── SOCIAL + RESUME/CONTACT quick actions ── */}
+        <Card delay={0.13} className="!p-3 flex flex-col gap-1.5 overflow-hidden">
+          <p className="label text-accent/85 !text-[9px]">Connect</p>
+          <div className="flex-1 min-h-0 overflow-y-auto premium-scroll flex flex-col gap-1.5 mt-0.5">
+            {SOCIALS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-2.5 py-2 rounded-[9px] border border-accent/12 text-[10.5px] text-ink font-medium min-h-[36px] hover:bg-accent hover:text-primary hover:border-accent transition-colors"
+              >
+                {label}
+                <MiniArrowSmall />
               </a>
-
-              <a href="https://linkedin.com/in/aman-samani" target="_blank" className="w-7 h-7 rounded-full overflow-hidden">
-                <img src="/linkedin.svg" className="w-full h-full object-cover" />
-              </a>
-
-              <a href="https://www.instagram.com/aman.script" target="_blank" className="w-7 h-7 rounded-full overflow-hidden">
-                <img src="/instagram.svg" className="w-full h-full object-cover" />
-              </a>
-
-              <a href="mailto:amanworkinfo@gmail.com" className="w-7 h-7 rounded-full overflow-hidden">
-                <img src="/gmail.svg" className="w-full h-full object-cover" />
-              </a>
-
-            </div>
-
+            ))}
             <a
               href="/aman_CV.pdf"
               download
-              className="bg-[#B40023] font-bold text-white text-[10px] px-5 py-2 rounded-lg"
+              className="flex items-center justify-center gap-1.5 bg-accent text-primary rounded-[9px] py-2 text-[10.5px] font-medium min-h-[36px] mt-auto"
             >
-              DOWNLOAD CV
+              Download CV
             </a>
           </div>
+        </Card>
 
-          <div className="col-span-2 h-4" />
+        {/* ── PROJECTS carousel (Featured + minor projects) ── */}
+        <Card delay={0.18} className="!col-span-2 !p-3 flex flex-col overflow-hidden">
+          <div className="flex items-center justify-between">
+            <p className="label text-accent/85 !text-[9px]">Projects</p>
+            <p className="text-[8.5px] text-ink/45 font-mono">swipe →</p>
+          </div>
+          <div className="flex-1 min-h-0 flex gap-2.5 overflow-x-auto snap-x snap-mandatory no-scrollbar mt-1.5 -mx-0.5 px-0.5">
+            {/* Featured slide — no live link yet, so it's presentational, not a fake anchor */}
+            <div className="relative min-w-full snap-center rounded-[14px] overflow-hidden flex flex-col justify-end p-3 bg-ink">
+              <img
+                src={FEATURED_PROJECT.image}
+                alt="Screenshot of the FitLip fitness tracking app"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover opacity-45"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" />
+              <div className="relative z-10">
+                <p className="text-[8.5px] font-mono font-bold tracking-wider uppercase text-accent-soft">★ Featured</p>
+                <p className="display text-[22px] text-primary leading-[0.95] mt-0.5">FitLip</p>
+                <p className="text-[10px] text-primary/70 font-light leading-snug mt-1 line-clamp-2">
+                  {FEATURED_PROJECT.description}
+                </p>
+                <p className="text-[9px] text-primary/55 font-mono mt-1.5">{FEATURED_PROJECT.cta}</p>
+              </div>
+            </div>
 
-        </div>
+            {/* Minor project slides */}
+            {PROJECTS.map((p) => (
+              <a
+                key={p.title}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative min-w-full snap-center rounded-[14px] overflow-hidden flex flex-col justify-end p-3 bg-ink"
+              >
+                <img
+                  src={p.image}
+                  alt={`Screenshot of ${p.title}`}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-55"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/25" />
+                <div className="relative z-10">
+                  <p className="text-[8.5px] font-mono font-bold tracking-wider uppercase text-accent-soft">{p.tags}</p>
+                  <p className="display text-[22px] text-primary leading-[0.95] mt-0.5">{p.title}</p>
+                  <p className="text-[10px] text-primary/70 font-light leading-snug mt-1 line-clamp-2">
+                    {p.description}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1.5 mt-2">
+            {[FEATURED_PROJECT, ...PROJECTS].map((_, i) => (
+              <span key={i} className="w-[4px] h-[4px] rounded-full bg-accent/30" />
+            ))}
+          </div>
+        </Card>
+
+        {/* ── CONTACT strip ───────────────── */}
+        <Card delay={0.24} className="!col-span-2 !p-3 !py-2.5" bodyClassName="!flex-row items-center justify-between gap-2">
+          <p className="text-[10px] text-ink/62 font-light flex-shrink-0">Let's build something.</p>
+          <div className="flex items-center gap-3 min-w-0">
+            <a href={`mailto:${CONTACT.email}`} className="font-mono text-[10px] text-accent font-medium truncate">
+              {CONTACT.email}
+            </a>
+            <a href={CONTACT.phoneHref} className="font-mono text-[10px] text-ink/55 flex-shrink-0">
+              {CONTACT.phone}
+            </a>
+          </div>
+        </Card>
       </div>
     </div>
-    
+  );
+}
+
+/* Compact skills renderer tuned for the small mobile card */
+function MobileSkills({ skills }) {
+  const entries = Object.entries(skills);
+  return (
+    <div className="flex flex-col">
+      {entries.map(([category, items], i) => (
+        <div key={category} className={`py-1 ${i !== 0 ? "border-t border-ink/8" : "pt-0"}`}>
+          <p className="text-[8px] text-accent font-bold uppercase tracking-wider mb-1">
+            {category === "ai_ml" ? "AI / ML" : category}
+          </p>
+          <div className="flex flex-wrap gap-1">
+            {items.map((skill) => (
+              <span
+                key={skill}
+                className="font-mono text-[8.5px] px-1.5 py-[3px] bg-accent/8 border border-accent/10 rounded-[6px] text-ink"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MiniArrowSmall() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
   );
 }

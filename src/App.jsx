@@ -1,61 +1,18 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Card from "./components/Card";
 import Skills from "./components/Skills";
 import MobileLayout from "./components/MobileLayout";
 import { Analytics } from '@vercel/analytics/react';
-const SKILLS = {
-  frontend: [
-    "React.js",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "Tailwind CSS"
-  ],
-
-  backend: [
-    "Node.js",
-    "Express.js",
-    "REST APIs",
-    "JWT Authentication"
-  ],
-
-  database: [
-    "MongoDB",
-    "PostgreSQL",
-    "SQL"
-  ],
-
-  mobile: [
-    "React Native (Expo)"
-  ],
-
-  ai_ml: [
-    "Python",
-    "Pandas",
-    "NumPy",
-    "Scikit-learn",
-    "NLP (TF-IDF, Word2Vec, LSTM)"
-  ],
-
-  tools: [
-    "Git",
-    "GitHub",
-    "Postman",
-    "Swagger",
-    "MVC Architecture"
-  ]
-};
+import { SKILLS, FEATURED_PROJECT, PROJECTS, SOCIALS, CONTACT } from "./data";
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setLoaded(true), 100); }, []);
   const videoRef = useRef(null);
 
-    useEffect(() => {
-      if (videoRef.current) {
-        videoRef.current.playbackRate = 1.6;
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.6;
     }
-    } , []);
+  }, []);
 
   return (
     <>
@@ -65,39 +22,38 @@ export default function App() {
     {/* Desktop */}
     <div className="hidden md:block">
 
-    <div className="h-screen w-screen bg-primary overflow-hidden p-[24px]">
+    <div className="h-dvh w-dvw bg-primary overflow-hidden p-[clamp(14px,1.6vw,26px)]">
       {/* Noise texture */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }}
       />
 
-      <div className="relative z-10 h-full grid gap-[14px]"
+      <div className="relative z-10 h-full grid gap-[clamp(10px,0.9vw+0.4vh,16px)]"
           style={{
-            gridTemplateColumns: "2.4fr 1.1fr 1.4fr 1.1fr",
-            gridTemplateRows: "1.7fr 1fr 1fr",
+            gridTemplateColumns: "2.3fr 1.15fr 1.4fr 1.15fr",
+            gridTemplateRows: "1.55fr 1.05fr 1.05fr",
             gridTemplateAreas: `
               "intro   intro   featured  profile"
               "skills  proj1   featured  social"
               "skills  proj2  contact    resume"
             `
           }}
-        
       >
 
         {/* ── INTRO ───────────────────────── */}
         <Card delay={0.04} style={{ gridArea: "intro" }} className="flex flex-col justify-between">
           <div>
-            <p className="label">// FULL STACK ENGINEER • AI BUILDER • OPEN TO WORK</p>
-            <h1 className="display text-[clamp(38px,4.2vw,62px)] leading-[0.92] mt-2 max-w-[580px]">
+            <p className="label text-accent/85">// FULL STACK ENGINEER • AI BUILDER • OPEN TO WORK</p>
+            <h1 className="display text-[clamp(32px,3.6vw+1.4vh,62px)] leading-[0.92] mt-2 max-w-[580px]">
               I BUILD <span className="text-accent">AI&#8209;POWERED</span><br />
               WEB & MOBILE APPLICATIONS
             </h1>
-            <p className="mt-3 text-[13px] text-ink/50 font-light tracking-wide max-w-[380px]">
+            <p className="mt-3 text-[13px] text-ink/65 font-light tracking-wide max-w-[380px]">
               Full Stack Developer specializing in MERN stack and AI-driven applications, building scalable products from idea to deployment.
             </p>
           </div>
           <div className="flex justify-end">
-            <div className="flex items-center gap-2 text-[11px] text-ink/50 bg-accent/8 border border-accent/15 px-3.5 py-1.5 rounded-full">
+            <div className="flex items-center gap-2 text-[11px] text-ink/70 font-medium bg-accent/8 border border-accent/15 px-3.5 py-1.5 rounded-full">
               <span className="w-[7px] h-[7px] rounded-full bg-accent animate-pulse flex-shrink-0" />
                 Available for roles
             </div>
@@ -107,80 +63,77 @@ export default function App() {
 
         {/* ── PROFILE ─────────────────────── */}
         <Card
-  delay={0.11}
-  style={{ gridArea: "profile" }}
-  className="flex flex-col items-center justify-center gap-4 text-center group"
->
+          delay={0.11}
+          style={{ gridArea: "profile" }}
+          className="flex flex-col items-center justify-center gap-4 text-center"
+        >
 
+          {/* PROFILE MEDIA */}
+          <div className="relative">
 
-  {/* PROFILE MEDIA */}
-<div className="relative">
+            {/* OUTER GLOW RING */}
+            <div className="absolute inset-[-6px] rounded-full bg-[conic-gradient(rgba(180,0,35,0.25)_0deg,transparent_120deg,transparent_360deg)] blur-[6px] opacity-60 group-hover:opacity-100 transition duration-500" />
 
-  {/* OUTER GLOW RING */}
-  <div className="absolute inset-[-6px] rounded-full bg-[conic-gradient(rgba(180,0,35,0.25)_0deg,transparent_120deg,transparent_360deg)] blur-[6px] opacity-60 group-hover:opacity-100 transition duration-500" />
+            {/* BORDER RING */}
+            <div className="w-[min(190px,16vh)] h-[min(190px,16vh)] rounded-full border border-accent/30 p-[3px] relative z-10">
 
-  {/* BORDER RING */}
-  <div className="w-[190px] h-[190px] rounded-full border border-accent/30 p-[3px] relative z-10">
+              {/* VIDEO CONTAINER */}
+              <div className="w-full h-full rounded-full overflow-hidden bg-accent/10">
+                <video
+                  ref={videoRef}
+                  src="/aman_video1.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Short introduction clip of Aman Samani"
+                  className="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-500"
+                />
+              </div>
+            </div>
+          </div>
 
-    {/* VIDEO CONTAINER */}
-    <div className="w-full h-full rounded-full overflow-hidden bg-accent/10">
-      
-      <video
-        ref={videoRef}
-        src="/aman_video1.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-500"
-      />
+          {/* NAME */}
+          <p className="text-[14px] font-semibold tracking-tight text-ink">
+            Aman Samani
+          </p>
 
-    </div>
-  </div>
+          {/* ROLE */}
+          <p className="text-[11px] text-ink/65 font-bold leading-relaxed max-w-[150px]">
+            Full Stack & AI Developer · B.Tech '25
+          </p>
 
-</div>
-
-  {/* NAME */}
-  <p className="text-[14px] font-semibold tracking-tight text-ink">
-    Aman Samani
-  </p>
-
-  {/* ROLE */}
-  <p className="text-[11px] text-ink/50 font-bold leading-relaxed max-w-[150px]">
-    Full Stack & AI Developer · B.Tech '25
-  </p>
-
-</Card>
+        </Card>
 
         {/* ── FEATURED PROJECT ────────────── */}
         <Card
           delay={0.18}
           style={{ gridArea: "featured" }}
-          className="bg-ink border-transparent flex flex-col justify-between cursor-pointer group"
-          onClick={() => window.open("https://your-ai-project.com", "_blank")}
+          className="flex flex-col justify-between"
           dark
+          coverImage={FEATURED_PROJECT.image}
+          coverAlt="Screenshot of the FitLip fitness tracking app"
         >
           <div>
-            <p className="label text-accent/85">★ Featured Project</p>
-            <h2 className="display text-[clamp(28px,2.8vw,42px)] text-primary leading-[0.95] mt-1.5 max-w-[320px]">
+            <p className="label text-accent-soft">★ {FEATURED_PROJECT.label}</p>
+            <h2 className="display text-[clamp(24px,2.4vw+0.8vh,42px)] text-primary leading-[0.95] mt-1.5 max-w-[320px]">
               FITLIP - AI Health<br />Assistant
             </h2>
-            <p className="text-[12px] text-primary/50 font-light leading-relaxed mt-2 max-w-[300px]">
-             FitLip is a powerful fitness tracking app designed to help you stay consistent and achieve real results. It allows you to monitor workouts, track progress, and build discipline with ease. With a clean interface and smooth performance,
-              FitLip keeps your fitness journey organized, focused, and goal-driven, helping you transform your body and become the best version of yourself.
+            <p className="text-[12px] text-primary/65 font-light leading-relaxed mt-2 max-w-[300px]">
+              {FEATURED_PROJECT.description}
             </p>
             <div className="flex flex-wrap gap-1.5 mt-4">
-              {["TypeScript", "React Native", "Node.js", "Express.js", "MongoDB"].map(t => (
-                <span key={t} className="font-mono text-[9.5px] tracking-wide px-2.5 py-1 rounded-full border border-primary/15 text-primary/55 bg-primary/6">
+              {FEATURED_PROJECT.tags.map(t => (
+                <span key={t} className="font-mono text-[9.5px] tracking-wide px-2.5 py-1 rounded-full border border-primary/20 text-primary/70 bg-primary/8">
                   {t}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-primary/10">
-            <span className="text-[11px] text-primary/40 font-light">Live demo (Coming Soon) →</span>
-            <div className="w-[34px] h-[34px] rounded-full bg-accent flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-[0_4px_16px_rgba(180,0,35,0.5)]">
-              <ArrowIcon className="w-[14px] fill-white" />
+          <div className="flex items-center justify-between mt-4 pt-4 border-t border-primary/15">
+            <span className="text-[11px] text-primary/60 font-light">{FEATURED_PROJECT.cta}</span>
+            <div className="w-[34px] h-[34px] rounded-full bg-accent-soft flex items-center justify-center">
+              <ArrowIcon className="w-[14px] fill-ink" />
             </div>
           </div>
           <CornerMarks light />
@@ -192,45 +145,44 @@ export default function App() {
           style={{ gridArea: "skills" }}
           className="flex flex-col gap-2.5 h-full overflow-hidden"
         >
-        <p className="label">Skills</p>
+        <p className="label text-accent/85">Skills</p>
 
         {/* Scroll container */}
-        <div className="flex-1 overflow-y-auto pr-1 no-scrollbar">
+        <div className="flex-1 min-h-0 overflow-y-auto pr-1 premium-scroll">
           <Skills skills={SKILLS} />
         </div>
         </Card>
+
         {/* ── PROJECT 1 ───────────────────── */}
         <Card
           delay={0.32}
           style={{ gridArea: "proj1" }}
-          className="flex flex-col overflow-hidden cursor-pointer group"
-          onClick={() => window.open("https://blackjack-game-nvp7.vercel.app/", "_blank")}
+          className="flex flex-col overflow-hidden"
+          href={PROJECTS[0].href}
+          image={PROJECTS[0].image}
+          imageAlt={`Screenshot of ${PROJECTS[0].title}`}
         >
-        <div className="flex-1 overflow-y-auto pr-1 premium-scroll">
-        <p className="label">Minor Project 1</p>
-        <h3 className="display text-[clamp(18px,1.6vw,24px)] leading-[0.95] mt-1">
-        Betjack<br />Game
-        </h3>
-        <p className="text-[11.5px] text-ink/45 font-light leading-relaxed mt-1.5">
-          A browser-based Blackjack game with a betting 
-          system using interactive coin chips. Features real-time gameplay,
-           balance tracking, and smooth UI built with JavaScript.
-        </p>
-        </div>
+          <p className="label text-accent/85">Minor Project 1</p>
+          <h3 className="display text-[clamp(17px,1.4vw+0.5vh,24px)] leading-[0.95] mt-1">
+            {PROJECTS[0].title}
+          </h3>
+          <p className="text-[11.5px] text-ink/62 font-light leading-relaxed mt-1.5 flex-1 min-h-0 overflow-y-auto premium-scroll pr-0.5">
+            {PROJECTS[0].description}
+          </p>
 
-        <div className="flex items-center justify-between pt-2.5">
-        <span className="font-mono text-[9px] tracking-widest px-2.5 py-1 rounded-full border border-accent/15 text-accent bg-accent/8 uppercase">
-            HTML · CSS · JAVASCRIPT
-        </span>
-        <MiniArrow />
-        </div>
+          <div className="flex items-center justify-between pt-2.5 flex-shrink-0">
+            <span className="font-mono text-[9px] tracking-widest px-2.5 py-1 rounded-full border border-accent/15 text-accent bg-accent/8 uppercase">
+              {PROJECTS[0].tags}
+            </span>
+            <MiniArrow />
+          </div>
         </Card>
 
         {/* ── RESUME ──────────────────────── */}
         <Card delay={0.38} style={{ gridArea: "resume" }} className="flex flex-col justify-between">
           <div>
-            <p className="label">Resume</p>
-            <p className="text-[14px] text-ink/45 font-light mt-1.5 p-2 leading-relaxed">
+            <p className="label text-accent/85">Resume</p>
+            <p className="text-[13px] text-ink/62 font-light mt-2 leading-relaxed">
               B.Tech · Software Engineering<br />Full Stack & AI track
             </p>
           </div>
@@ -244,64 +196,64 @@ export default function App() {
 
         {/* ── CONTACT ─────────────────────── */}
         <Card delay={0.44} style={{ gridArea: "contact" }} className="flex flex-col justify-between">
-          <p className="label">Contact</p>
+          <p className="label text-accent/85">Contact</p>
           <div>
-            <p className="text-[14px] text-ink/45 font-light">Let's build something.</p>
-            <a href="mailto:amanworkinfo@gmail.com"
-              className="font-mono text-[12.5px] text-accent font-medium mt-1 block break-all hover:opacity-70 transition-opacity"
-            >amanworkinfo@gmail.com<br>
-            </br>
-            +91 9794182694</a>
+            <p className="text-[13px] text-ink/62 font-light">Let's build something.</p>
+            <div className="flex flex-col mt-1.5 gap-0.5">
+              <a href={`mailto:${CONTACT.email}`}
+                className="font-mono text-[12px] text-accent font-medium break-all hover:opacity-70 transition-opacity"
+              >
+                {CONTACT.email}
+              </a>
+              <a href={CONTACT.phoneHref}
+                className="font-mono text-[11.5px] text-ink/62 hover:text-accent transition-colors"
+              >
+                {CONTACT.phone}
+              </a>
+            </div>
           </div>
         </Card>
 
+        {/* ── PROJECT 2 ───────────────────── */}
         <Card
           delay={0.50}
           style={{ gridArea: "proj2" }}
-          className="flex flex-col overflow-hidden cursor-pointer group"
-          onClick={() => window.open("https://gallery-toons.vercel.app/", "_blank")}
+          className="flex flex-col overflow-hidden"
+          href={PROJECTS[1].href}
+          image={PROJECTS[1].image}
+          imageAlt={`Screenshot of ${PROJECTS[1].title}`}
         >
-        <div className="flex-1 overflow-y-auto no-scrollbar pr-1 premium-scroll">
-        <p className="label">Minor Project 2</p>
+          <p className="label text-accent/85">Minor Project 2</p>
+          <h3 className="display text-[clamp(17px,1.4vw+0.5vh,24px)] leading-[0.95] mt-1">
+            {PROJECTS[1].title}
+          </h3>
+          <p className="text-[11.5px] text-ink/62 font-light leading-relaxed mt-1.5 flex-1 min-h-0 overflow-y-auto premium-scroll pr-0.5">
+            {PROJECTS[1].description}
+          </p>
 
-        <h3 className="display text-[clamp(18px,1.6vw,24px)] leading-[0.95] mt-1">
-          Gallery<br />Toons
-        </h3>
-
-        <p className="text-[11.5px] text-ink/45 font-light leading-relaxed mt-1.5 ">
-            A modern wallpaper platform inspired by Unsplash, featuring high-quality 
-            images with smooth browsing, search functionality, 
-            and a clean responsive UI built using JavaScript.
-        </p>
-        </div>
-
-        <div className="flex items-center justify-between pt-2.5">
-        <span className="font-mono text-[9px] tracking-widest px-2.5 py-1 rounded-full border border-accent/15 text-accent bg-accent/8 uppercase">
-          HTML · CSS · JAVASCRIPT
-        </span>
-        <MiniArrow />
-        </div>
-
+          <div className="flex items-center justify-between pt-2.5 flex-shrink-0">
+            <span className="font-mono text-[9px] tracking-widest px-2.5 py-1 rounded-full border border-accent/15 text-accent bg-accent/8 uppercase">
+              {PROJECTS[1].tags}
+            </span>
+            <MiniArrow />
+          </div>
         </Card>
 
         {/* ── SOCIAL ──────────────────────── */}
-        <Card 
-  delay={0.56} 
-  style={{ gridArea: "social" }} 
-  className="flex flex-col gap-4 min-h-0"
->
-          <p className="label">Links</p>
-          <div className="flex flex-col gap-2 flex-1 overflow-y-auto pr-1 premium-scroll">
-            {[
-              { label: "GitHub", href: "https://github.com/amansamani", icon: <GithubIcon /> },
-              { label: "LinkedIn", href: "https://linkedin.com/in/aman-samani", icon: <LinkedInIcon /> },
-              { label: "Instagram", href: "https://www.instagram.com/aman.script", icon: <InstagramIcon /> },
-              
-            ].map(({ label, href, icon }) => (
+        <Card
+          delay={0.56}
+          style={{ gridArea: "social" }}
+          className="flex flex-col gap-3 min-h-0"
+        >
+          <p className="label text-accent/85">Links</p>
+          <div className="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto premium-scroll pr-1">
+            {SOCIALS.map(({ label, href }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2.5  px-3 py-2.5 rounded-[11px] border border-accent/12 text-[10px] text-ink font-normal transition-all duration-200 hover:bg-accent hover:text-primary hover:border-accent group/link"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-[11px] border border-accent/12 text-[11px] text-ink font-medium transition-all duration-200 hover:bg-accent hover:text-primary hover:border-accent group/link"
               >
-                <span className="w-[15px] fill-ink group-hover/link:fill-primary transition-colors [&>svg]:w-full">{icon}</span>
+                <span className="w-[15px] h-[15px] fill-ink group-hover/link:fill-primary transition-colors [&>svg]:w-full [&>svg]:h-full" aria-hidden="true">
+                  {SOCIAL_ICONS[label]}
+                </span>
                 {label}
               </a>
             ))}
@@ -319,8 +271,14 @@ export default function App() {
 
 /* ── HELPERS ──────────────────────────────────────── */
 
+const SOCIAL_ICONS = {
+  GitHub: <GithubIcon />,
+  LinkedIn: <LinkedInIcon />,
+  Instagram: <InstagramIcon />,
+};
+
 function CornerMarks({ light }) {
-  const c = light ? "border-primary/20" : "border-accent/25";
+  const c = light ? "border-primary/25" : "border-accent/25";
 
   return (
     <>
@@ -342,7 +300,7 @@ function MiniArrow() {
 
 function ArrowIcon({ className }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" className="stroke-current" />
     </svg>
   );
@@ -350,7 +308,7 @@ function ArrowIcon({ className }) {
 
 function DownloadIcon({ className }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M12 15l-4-4h3V4h2v7h3l-4 4zm-7 4v-2h14v2H5z" />
     </svg>
   );
@@ -371,6 +329,7 @@ function LinkedInIcon() {
     </svg>
   );
 }
+
 function InstagramIcon() {
   return (
     <svg
@@ -381,5 +340,4 @@ function InstagramIcon() {
       <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3zm5 3.5A5.5 5.5 0 106 13a5.5 5.5 0 006-5.5zm0 2A3.5 3.5 0 118.5 13 3.5 3.5 0 0112 9.5zm4.75-3.25a1.25 1.25 0 11-1.25 1.25 1.25 1.25 0 011.25-1.25z" />
     </svg>
   );
-  
 }

@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FCF0D6;
-  --color-accent:  #B40023;
-  --color-card:    #F7E9CC;
-  --color-ink:     #1a0a0a;
+  --color-primary:     #FCF0D6;
+  --color-accent:      #B40023;
+  /* Brighter accent tuned for AA text contrast on dark (ink) surfaces */
+  --color-accent-soft: #FF5C77;
+  --color-card:        #F7E9CC;
+  --color-ink:         #1a0a0a;
 
   --font-sans:    "DM Sans", sans-serif;
   --font-display: "Bebas Neue", sans-serif;
@@ -16,8 +18,27 @@
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; overflow: hidden; }
-  body { font-family: var(--font-sans); }
+  html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
+  body { font-family: var(--font-sans); background: var(--color-primary); }
+  #root { height: 100dvh; width: 100dvw; }
+
+  /* Visible, on-brand keyboard focus ring — works on both light and dark cards */
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent-soft);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -27,12 +48,10 @@
   }
   .label {
     font-family: var(--font-mono);
-    font-size: 15px;
-    font-weight: bold;
+    font-size: clamp(10px, 0.85vw, 13px);
+    font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-accent);
-    opacity: 0.75;
   }
   .animate-spin-slow {
     animation: spin 8s linear infinite;

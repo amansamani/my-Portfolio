@@ -8,13 +8,16 @@ const CATEGORY_LABELS = {
 };
 
 export default function Skills({ skills }) {
+  const entries = Object.entries(skills);
   return (
-    <div className="flex flex-col gap-3 flex-1">
-      {Object.entries(skills).map(([category, items]) => (
-        <div key={category}>
-          
+    <div className="flex flex-col flex-1">
+      {entries.map(([category, items], i) => (
+        <div
+          key={category}
+          className={`py-2 ${i !== 0 ? "border-t border-ink/8" : "pt-0"}`}
+        >
           {/* Category Title */}
-          <p className="text-[10px] text-accent/70 font-medium uppercase tracking-wider mb-1">
+          <p className="text-[10px] text-accent font-bold uppercase tracking-wider mb-1.5">
             {CATEGORY_LABELS[category]}
           </p>
 
@@ -29,7 +32,6 @@ export default function Skills({ skills }) {
               </span>
             ))}
           </div>
-
         </div>
       ))}
     </div>
