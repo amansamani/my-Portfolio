@@ -1,28 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary:     #FCF0D6;
-  --color-accent:      #B40023;
-  /* Brighter accent tuned for AA text contrast on dark (ink) surfaces */
-  --color-accent-soft: #FF5C77;
-  --color-card:        #F7E9CC;
-  --color-ink:         #1a0a0a;
+  /* ── Brand palette — Emerald Green / Off-White ───────────── */
+  --color-primary:      #F8F4EB;  /* page bg · light text on dark surfaces   */
+  --color-card:         #F1ECDA;  /* card surface — one notch off the page   */
+  --color-accent:       #056408;  /* emerald — the brand mark                */
+  --color-accent-soft:  #2FAE58;  /* bright emerald — AA-safe on dark, glow  */
+  --color-ink:          #0A1F12;  /* near-black deep green — dark surfaces   */
 
-  --font-sans:    "DM Sans", sans-serif;
-  --font-display: "Bebas Neue", sans-serif;
-  --font-mono:    "DM Mono", monospace;
+  --font-sans:    "Manrope", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
 
-  --radius-2xl: 22px;
+  --radius-2xl: 26px;
 }
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
-  body { font-family: var(--font-sans); background: var(--color-primary); }
-  #root { height: 100dvh; width: 100dvw; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-primary);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { min-height: 100dvh; width: 100%; }
 
-  /* Visible, on-brand keyboard focus ring — works on both light and dark cards */
+  ::selection { background: var(--color-accent); color: var(--color-primary); }
+
   a:focus-visible,
   button:focus-visible,
   [tabindex]:focus-visible {
@@ -44,67 +49,88 @@
 @layer utilities {
   .display {
     font-family: var(--font-display);
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
+    font-weight: 800;
   }
   .label {
     font-family: var(--font-mono);
-    font-size: clamp(10px, 0.85vw, 13px);
-    font-weight: 700;
-    letter-spacing: 0.14em;
+    font-size: clamp(10px, 0.85vw, 12.5px);
+    font-weight: 600;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
   }
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
+  .chip {
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
   }
-  /* 🔥 Hide scrollbar but keep scroll working */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+  .text-signature {
+    background: linear-gradient(100deg, var(--color-accent) 20%, var(--color-accent-soft) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* Hide scrollbar but keep scroll working */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
-}
-}
-/* Premium thin scrollbar */
-.premium-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-
-.premium-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+/* ── Premium thin scrollbar, emerald tint ────────────────────── */
+.premium-scroll::-webkit-scrollbar { width: 4px; }
+.premium-scroll::-webkit-scrollbar-track { background: transparent; }
 .premium-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    to bottom,
-    rgba(180, 0, 35, 0.4),
-    rgba(180, 0, 35, 0.8)
-  );
+  background: linear-gradient(to bottom, rgba(5,100,8,0.35), rgba(5,100,8,0.75));
   border-radius: 10px;
 }
+.premium-scroll::-webkit-scrollbar-thumb:hover { background: rgba(5,100,8,1); }
+.premium-scroll { scrollbar-width: thin; scrollbar-color: rgba(5,100,8,0.55) transparent; }
 
-/* Hover effect */
-.premium-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(180, 0, 35, 1);
-}
-
-/* Firefox */
-.premium-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(180, 0, 35, 0.6) transparent;
-}
+/* ── Motion ───────────────────────────────────────────────────── */
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0%   { opacity: 0; transform: translateY(28px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 1.1s ease-out forwards; }
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.cursor-blink { animation: blink 1.1s steps(1) infinite; }
+
+@keyframes driftSlow {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-drift-slow { animation: driftSlow 140s linear infinite; }
+
+/* ── Bento grid system — real breakpoints, not a squeezed clone ─
+   base:  handled by <MobileLayout/> (< 640px)
+   sm+:   2-column tablet weave
+   lg+:   4-column desktop bento (matches original design intent)
+------------------------------------------------------------------ */
+.bento {
+  display: grid;
+  gap: clamp(10px, 1.1vw, 18px);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "intro    intro"
+    "featured featured"
+    "profile  skills"
+    "proj1    proj2"
+    "resume   contact"
+    "social   social";
 }
 
-.animate-fadeIn {
-  animation: fadeIn 1.3s ease-out forwards;
+@media (min-width: 1024px) {
+  .bento {
+    grid-template-columns: 2.15fr 1.1fr 1.35fr 1.1fr;
+    grid-template-rows: minmax(230px, auto) minmax(190px, auto) minmax(190px, auto);
+    grid-template-areas:
+      "intro   intro   featured profile"
+      "skills  proj1   featured social"
+      "skills  proj2   contact  resume";
+  }
 }

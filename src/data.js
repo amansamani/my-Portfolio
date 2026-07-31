@@ -1,49 +1,49 @@
 // Shared content — single source of truth for desktop + mobile layouts.
 
 export const SKILLS = {
-  frontend: ["React.js", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
-  backend: ["Node.js", "Express.js", "REST APIs", "JWT Authentication"],
-  database: ["MongoDB", "PostgreSQL", "SQL"],
-  mobile: ["React Native (Expo)"],
-  ai_ml: ["Python", "Pandas", "NumPy", "Scikit-learn", "NLP (TF-IDF, Word2Vec, LSTM)"],
-  tools: ["Git", "GitHub", "Postman", "Swagger", "MVC Architecture"],
+  languages: ["JavaScript (ES6+)", "TypeScript", "Python", "Java"],
+  frontend: ["React.js", "Next.js", "React Native (Expo)", "HTML5", "CSS3", "Tailwind CSS"],
+  backend: ["Node.js", "Express.js", "REST API Design", "JWT Authentication", "Middleware"],
+  database: ["MongoDB", "PostgreSQL", "SQL", "Redis"],
+  ai_ml: ["Gemini API", "Ollama (Local LLM)", "Scikit-learn", "XGBoost", "Pandas", "ChromaDB (Vector Search)"],
+  tools: ["Git", "GitHub", "Prisma", "Postman", "Vercel", "Railway"],
+  core_cs: ["Data Structures & Algorithms", "OOP", "DBMS", "Operating Systems", "Computer Networks"],
 };
 
 export const CATEGORY_LABELS = {
+  languages: "Languages",
   frontend: "Frontend",
   backend: "Backend",
-  database: "Database",
-  mobile: "Mobile",
+  database: "Databases",
   ai_ml: "AI / ML",
-  tools: "Tools",
+  tools: "Tools & DevOps",
+  core_cs: "Core CS",
 };
 
 export const FEATURED_PROJECT = {
   label: "Featured Project",
-  title: "FITLIP — AI Health Assistant",
+  title: "HireKarlo — AI Applicant Tracking System",
   description:
-    "A fitness tracking app for staying consistent and building discipline — monitor workouts, track progress, and keep your goals organized with a clean, responsive interface.",
-  tags: ["TypeScript", "React Native", "Node.js", "Express.js", "MongoDB"],
-  image: "/fitlip-thumb.webp",
-  cta: "Live demo — coming soon",
+    "A full-stack ATS where recruiters post jobs and candidates apply via a public, no-login link. Gemini parses every resume server-side and scores candidates 0–100 straight into the pipeline — live in production.",
+  tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Gemini API"],
+  cta: "Live in production",
 };
 
 export const PROJECTS = [
   {
-    title: "Betjack Game",
+    kicker: "AI · Mobile",
+    title: "Fitlip — AI Health Assistant",
     description:
-      "A browser-based Blackjack game with a betting system using interactive coin chips, real-time gameplay, and balance tracking.",
-    tags: "HTML · CSS · JS",
-    image: "/betjack-thumb.webp",
-    href: "https://blackjack-game-nvp7.vercel.app/",
+      "AI-personalized nutrition & workout app — an adaptive calorie engine (BMR/TDEE + weekly trend auto-tuning), Gemini-generated meal plans, and a BullMQ/Redis job pipeline across 42+ REST endpoints.",
+    tags: "React Native · Node.js · MongoDB · Redis · Gemini API",
+    image: "/fitlip-thumb.webp",
   },
   {
-    title: "Gallery Toons",
+    kicker: "Machine Learning",
+    title: "Fraud Detection Model",
     description:
-      "A modern wallpaper platform inspired by Unsplash — high-quality images, smooth browsing, and search, in a clean responsive UI.",
-    tags: "HTML · CSS · JS",
-    image: "/wallpaper-thumb.webp",
-    href: "https://gallery-toons.vercel.app/",
+      "An end-to-end ML pipeline classifying fraud in a severely imbalanced 465K+ transaction dataset — SMOTE oversampling + a tuned XGBoost classifier reaching 91.1% recall, 80.5% F1, and 0.995 ROC-AUC.",
+    tags: "Python · XGBoost · scikit-learn · SMOTE",
   },
 ];
 
