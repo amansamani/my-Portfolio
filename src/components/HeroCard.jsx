@@ -48,8 +48,7 @@ export default function HeroCard() {
         </div>
 
         {/* Face animation — zoomed to crop out the watermark */}
-        <div className="h-36 w-28 shrink-0 overflow-hidden rounded-2xl border border-cream/25 bg-cream/10 shadow-lg shadow-black/20 transition-transform duration-300 hover:scale-105 md:h-44 md:w-32">
-          <video
+        <div className="h-32 w-24 shrink-0 overflow-hidden rounded-2xl border border-cream/25 bg-cream/10 shadow-lg shadow-black/20 transition-transform duration-300 hover:scale-105 md:h-44 md:w-32">          <video
             src={FACE_VIDEO}
             autoPlay
             loop

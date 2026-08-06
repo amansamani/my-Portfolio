@@ -1,12 +1,12 @@
 export default function Background() {
   return (
     <div aria-hidden className="fade-in-late pointer-events-none fixed inset-0 z-0 overflow-hidden">      {/* Giant outline name — right edge, rotated */}
-      <span className="text-outline absolute -right-14 top-1/2 -translate-y-1/2 rotate-90 select-none font-display text-[10rem] font-bold leading-none tracking-tighter opacity-70 lg:text-[13rem]">
+      <span className="text-outline hidden md:block absolute -right-14 top-1/2 -translate-y-1/2 rotate-90 select-none font-display text-[10rem] font-bold leading-none tracking-tighter opacity-70 lg:text-[13rem]">
         AMAN
       </span>
 
       {/* Giant year — bottom left */}
-      <span className="text-outline absolute -bottom-8 left-[16%] select-none font-display text-[9rem] font-bold leading-none opacity-70">
+      <span className="text-outline hidden md:block  absolute -bottom-8 left-[16%] select-none font-display text-[9rem] font-bold leading-none opacity-70">
         '26
       </span>
 

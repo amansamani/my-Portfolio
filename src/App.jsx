@@ -4,6 +4,8 @@ import HeroCard from "./components/HeroCard";
 import ProjectCard, { DetailOverlay, DetailButton } from "./components/ProjectCard";
 import SkillsCard from "./components/SkillsCard";
 import ContactCard from "./components/ContactCard";
+import RookieTerminal from "./components/RookieTerminal";
+import RookieRobot from "./components/RookieRobot";
 
 const FITLIP_DETAILS = [
   "Adaptive calorie engine re-tunes targets weekly from 7-day adherence",
@@ -23,7 +25,8 @@ const ROOKIE_DETAILS = [
   "Commit diffs → local Llama 3.2 → SQLite + NetworkX graph",
   "ChromaDB semantic search, Hinglish-tuned embeddings",
   "Privacy-first: regex-scrubs secrets before storage",
-  "Next: MCP server for Claude Desktop",
+  "MCP server exposes memory as tools for Claude Desktop",
+  "Private by design — ask me for a live demo 👋",
 ];
 
 const FRAUD_DETAILS = [
@@ -37,8 +40,7 @@ function App() {
   const [fraudOpen, setFraudOpen] = useState(false);
 
   return (
-    <main className="min-h-dvh p-3 text-pine md:p-4 lg:h-dvh lg:overflow-hidden">
-      <Background />
+    <main className="min-h-dvh p-3 pb-10 text-pine md:p-4 lg:h-dvh lg:overflow-hidden">      <Background />
 
       <div className="bento-grid relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-2 gap-3 md:gap-4 lg:grid-cols-6 lg:grid-rows-4">
         {/* ── ROWS 1–2 ── */}
@@ -55,7 +57,8 @@ function App() {
             tags={["React Native", "Node.js", "MongoDB", "Gemini"]}
             img="/images/fitlip.png"
             alt="Fitlip mobile app screenshot"
-            link="https://github.com/amansamani"
+            link="https://github.com/amansamani/fitlip-releases/releases/tag/Create_new_tag_v1.0.0_on_publish"
+            linkType="download"
             details={FITLIP_DETAILS}
           />
         </div>
@@ -69,7 +72,7 @@ function App() {
             tags={["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Gemini"]}
             img="/images/hirekarlo.png"
             alt="HireKarlo landing page screenshot"
-            link="https://github.com/amansamani"
+            link="https://hirekarlo.amansamani.me"
             details={HIREKARLO_DETAILS}
           />
         </div>
@@ -79,28 +82,30 @@ function App() {
           <SkillsCard />
         </div>
 
-        <section className="bento-card col-span-1 min-h-0 justify-between p-4 lg:col-span-2">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="card-label">Rookie Agent · Local AI Dev-Memory</h3>
-            <div className="flex shrink-0 items-center gap-1.5">
-              <span className="chip">WIP</span>
-              <DetailButton open={rookieOpen} onClick={() => setRookieOpen((v) => !v)} />
-            </div>
-          </div>
-          <p className="text-[11px] leading-relaxed text-pine/70">
-            Turns git history into structured memory — commit diffs → local Llama 3.2 →
-            knowledge graph + semantic search. Privacy-first: secrets are regex-scrubbed
-            before storage. Next up: MCP server for Claude Desktop.
-          </p>
-          <div className="flex flex-wrap gap-1">
-            <span className="chip">Python</span>
-            <span className="chip">Ollama</span>
-            <span className="chip">ChromaDB</span>
-            <span className="chip">NetworkX</span>
-            <span className="chip">SQLite</span>
-          </div>
-          <DetailOverlay details={ROOKIE_DETAILS} open={rookieOpen} onClose={() => setRookieOpen(false)} />
-        </section>
+        <section className="bento-card group col-span-2 min-h-0 p-4 lg:col-span-2 lg:row-span-2">
+  <div className="flex items-center justify-between gap-2">
+    <h3 className="card-label">Rookie Agent · Local AI Dev-Memory</h3>
+    <div className="flex shrink-0 items-center gap-1.5">
+      <span className="chip">PRIVATE</span>
+      <DetailButton open={rookieOpen} onClick={() => setRookieOpen((v) => !v)} />
+    </div>
+  </div>
+
+  {/* 🤖 robot + terminal, now with breathing room */}
+  <div className="mt-3 flex flex-col items-center gap-4 sm:min-h-0 sm:flex-1 sm:flex-row sm:items-stretch">    <RookieRobot />
+    <RookieTerminal />
+  </div>
+
+  <div className="mt-3 flex flex-wrap gap-1">
+    <span className="chip">Python</span>
+    <span className="chip">Ollama</span>
+    <span className="chip">ChromaDB</span>
+    <span className="chip">NetworkX</span>
+    <span className="chip">MCP</span>
+  </div>
+
+  <DetailOverlay details={ROOKIE_DETAILS} open={rookieOpen} onClose={() => setRookieOpen(false)} />
+</section>
 
         <section className="bento-card col-span-1 min-h-0 justify-between p-4 lg:col-span-1">
           <div className="flex items-center justify-between gap-2">
@@ -124,7 +129,7 @@ function App() {
           <DetailOverlay details={FRAUD_DETAILS} open={fraudOpen} onClose={() => setFraudOpen(false)} />
         </section>
 
-        <section className="bento-card col-span-2 min-h-0 justify-between p-4 lg:col-span-1">
+        <section className="bento-card col-span-1 min-h-0 justify-between p-4 lg:col-span-1">
           <h3 className="card-label">Now</h3>
           <p className="text-[11px] leading-relaxed text-pine/70">
             <span className="font-semibold text-pine">Building</span> Rookie Agent ·{" "}
@@ -138,35 +143,29 @@ function App() {
           <ContactCard />
         </div>
 
-        <section className="bento-card col-span-2 min-h-0 p-4 lg:col-span-4">
-          <h3 className="card-label">Background</h3>
-          <span
-            aria-hidden
-            className="absolute right-4 top-4 rotate-3 rounded-md border-2 border-dashed border-pine/40 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-pine/60 opacity-70"
-          >
-            Class of 2026
-          </span>
-          <div className="grid flex-1 content-center gap-3 sm:grid-cols-3">
-            <div>
-              <p className="text-xs font-semibold">B.Tech Computer Science</p>
-              <p className="mt-0.5 text-[11px] leading-relaxed text-pine/60">
-                Babu Banarsi Das University, Lucknow · 2026 · GPA 7.6/10
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold">Project Lead</p>
-              <p className="mt-0.5 text-[11px] leading-relaxed text-pine/60">
-                Led a 4-member cross-functional capstone team — backend, frontend, UI/UX, research.
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold">Problem Solver</p>
-              <p className="mt-0.5 text-[11px] leading-relaxed text-pine/60">
-                LeetCode in Java · arrays, strings, dynamic programming.
-              </p>
-            </div>
-          </div>
-        </section>
+        <section className="bento-card col-span-2 min-h-0 p-4 lg:col-span-2">
+  <h3 className="card-label">Background</h3>
+  <span
+    aria-hidden
+    className="absolute right-4 top-4 rotate-3 rounded-md border-2 border-dashed border-pine/40 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-pine/60 opacity-70"
+  >
+    Class of 2026
+  </span>
+  <div className="mt-2 flex flex-1 flex-col justify-center gap-2.5">
+    <div>
+      <p className="text-[11px] font-semibold">B.Tech Computer Science</p>
+      <p className="text-[10px] leading-snug text-pine/60">Babu Banarsi Das University, Lucknow · 2026 · GPA 7.6/10</p>
+    </div>
+    <div>
+      <p className="text-[11px] font-semibold">Project Lead</p>
+      <p className="text-[10px] leading-snug text-pine/60">Led 4-member cross-functional capstone team</p>
+    </div>
+    <div>
+      <p className="text-[11px] font-semibold">Problem Solver</p>
+      <p className="text-[10px] leading-snug text-pine/60">LeetCode in Java · arrays, strings, DP</p>
+    </div>
+  </div>
+</section>
 
       </div>
     </main>
