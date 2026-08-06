@@ -6,6 +6,7 @@ import SkillsCard from "./components/SkillsCard";
 import ContactCard from "./components/ContactCard";
 import RookieTerminal from "./components/RookieTerminal";
 import RookieRobot from "./components/RookieRobot";
+import { Analytics } from "@vercel/analytics/react";
 
 const FITLIP_DETAILS = [
   "Adaptive calorie engine re-tunes targets weekly from 7-day adherence",
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <main className="min-h-dvh p-3 pb-10 text-pine md:p-4 lg:h-dvh lg:overflow-hidden">      <Background />
-
+      <Analytics />
       <div className="bento-grid relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-2 gap-3 md:gap-4 lg:grid-cols-6 lg:grid-rows-4">
         {/* ── ROWS 1–2 ── */}
         <div className="col-span-2 row-span-2 min-h-0 lg:col-span-3">
