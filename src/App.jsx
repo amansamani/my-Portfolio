@@ -56,13 +56,12 @@ function App() {
           <ProjectCard
             phone
             title="Fitlip"
-            badge="IN DEV"
+            badge="LIVE"
             tagline="AI health assistant"
             tags={["React Native", "Node.js", "MongoDB", "Gemini"]}
             img="/images/fitlip.jpg"
             alt="Fitlip mobile app screenshot"
-            link="https://github.com/amansamani/Ai-health-Assitant-"
-            linkType="github"
+            link="https://github.com/amansamani/fitlip-releases/releases/tag/Create_new_tag_v1.0.0_on_publish"
             details={FITLIP_DETAILS}
           />
         </div>
