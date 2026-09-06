@@ -59,7 +59,7 @@ function App() {
             badge="IN DEV"
             tagline="AI health assistant"
             tags={["React Native", "Node.js", "MongoDB", "Gemini"]}
-            img="/images/fitlip.png"
+            img="/images/fitlip.jpg"
             alt="Fitlip mobile app screenshot"
             link="https://github.com/amansamani/Ai-health-Assitant-"
             linkType="github"

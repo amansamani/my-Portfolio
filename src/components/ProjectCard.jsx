@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
+import { Download, X } from "lucide-react";
 
 /* ── Small rectangular "Detail" toggle button ── */
 export function DetailButton({ onClick, open = false, tone = "pine", className = "" }) {
@@ -183,7 +183,7 @@ export default function ProjectCard({
         <div className="flex shrink-0 items-center gap-1.5">
           <DetailButton open={open} onClick={toggle} />
           <span className="grid h-7 w-7 place-items-center rounded-full border border-pine/15 text-pine/60 transition-all group-hover:bg-pine group-hover:text-cream">
-            <ArrowUpRight size={13} />
+            <Download size={13} />
           </span>
         </div>
       </div>
