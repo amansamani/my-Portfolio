@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, X } from "lucide-react";
+import {ArrowUpRight, Download, X } from "lucide-react";
 
 /* ── Small rectangular "Detail" toggle button ── */
 export function DetailButton({ onClick, open = false, tone = "pine", className = "" }) {
