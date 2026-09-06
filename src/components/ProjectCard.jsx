@@ -128,7 +128,7 @@ export default function ProjectCard({
                 <div className="flex shrink-0 items-center gap-1.5">
                   <DetailButton tone="cream" open={open} onClick={toggle} />
                   <span className="grid h-7 w-7 place-items-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all group-hover:bg-cream group-hover:text-pine">
-                    <ArrowUpRight size={13} />
+                    <Download size={13} />
                   </span>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function ProjectCard({
         <div className="flex shrink-0 items-center gap-1.5">
           <DetailButton open={open} onClick={toggle} />
           <span className="grid h-7 w-7 place-items-center rounded-full border border-pine/15 text-pine/60 transition-all group-hover:bg-pine group-hover:text-cream">
-            <Download size={13} />
+            <ArrowUpRight size={13} />
           </span>
         </div>
       </div>
